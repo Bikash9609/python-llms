@@ -1,0 +1,50 @@
+Here's the voiceover script for connecting frontend to backend via REST API:
+
+Let's connect our React frontend to our Python backend using a REST API. This will allow us to send and receive data between the two.
+
+Open your App.js file and type:
+`
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function App() {
+  const [resumeFile, setResumeFile] = useState(null);
+
+  const handleFileUpload = (event) => {
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+
+    axios.post('/api/upload', formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  return (
+    <div>
+      <h1>Resume Analyzer</h1>
+      <form>
+        <input
+          type="file"
+          accept=".pdf, .docx, .txt"
+          onChange={handleFileUpload}
+        />
+        {resumeFile && <p>Selected file: {resumeFile.name}</p>}
+      </form>
+    </div>
+  );
+}
+
+export default App;
+`
+Here's what we're doing:
+
+* We import axios to make HTTP requests to our backend.
+* We define a handleFileUpload function that creates a form data object and appends the selected file to it.
+* We use axios to send a POST request to our backend with the form data.
+* In our React component, we call the handleFileUpload function when the user selects a file.
+
+That's it! Now we have a basic REST API connection between our frontend and backend.

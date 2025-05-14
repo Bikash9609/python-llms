@@ -1,0 +1,40 @@
+Here's the voiceover script for using Pandas to organize resume data:
+
+Let's use Pandas to organize our resume data.
+
+First, let's import the Pandas library:
+`
+import pandas as pd
+`
+Next, let's create a Pandas DataFrame from our resume data:
+`
+resume_data = {"Name": ["John Doe", "Jane Smith"], 
+                "Age": [30, 25], 
+                "Skills": ["Python", "JavaScript", "HTML/CSS"], 
+                "Experience": ["Software Engineer", "Web Developer"]}
+df = pd.DataFrame(resume_data)
+`
+This DataFrame has four columns: Name, Age, Skills, and Experience.
+
+Now let's use Pandas to manipulate our data. For example, let's sort our resume data by age:
+`
+sorted_df = df.sort_values(by="Age")
+print(sorted_df)
+`
+This will print out our resume data in the order of ascending age.
+
+We can also use Pandas to filter our data based on specific criteria. For example, let's find all resumes with Python as a skill:
+`
+python_skill_df = df[df["Skills"].str.contains("Python")]
+print(python_skill_df)
+`
+This will print out all resumes that have Python as one of their skills.
+
+Finally, let's use Pandas to group our data by specific criteria. For example, let's group our resume data by age and then find the average number of skills per person:
+`
+grouped_df = df.groupby("Age")["Skills"].count().mean()
+print(grouped_df)
+`
+This will print out the average number of skills per person for each age group.
+
+That's it! Now you can use Pandas to organize, manipulate, and analyze your resume data.

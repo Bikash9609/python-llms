@@ -1,0 +1,32 @@
+Here's the voiceover script for installing Git, creating a GitHub repo, and project structure overview:
+
+Let's start by setting up our version control system with Git. This will help us manage changes in our codebase as we build our smart resume analyzer and job matcher.
+
+First, open your terminal and type:
+
+git init
+
+This initializes a new Git repository in the current directory. Now let's create a GitHub repo to store our project files online. Go to the GitHub website, log in or sign up if you haven't already, then create a new repository called 'resume-analyzer'.
+
+Now that we have our project structure set up, let's take a look at what it should contain. Our root directory will hold all the files for our React frontend and Python backend. We'll also have a data directory to store any CSV or JSON files used in our project.
+
+Here's how your file structure should look like:
+
+* resume-analyzer/
+  * frontend/
+    * app.js
+    * components/
+      * ResumeUploader.js
+      * JobMatcher.js
+    * styles.css
+  * backend/
+    * app.py
+    * models/
+      * __init__.py
+      * Resume.py
+      * Job.py
+  * data/
+    * resumes.csv
+    * jobs.json
+
+That's it for now! In the next lesson, we'll start building our React frontend using Create React App and Tailwind CSS. See you then!

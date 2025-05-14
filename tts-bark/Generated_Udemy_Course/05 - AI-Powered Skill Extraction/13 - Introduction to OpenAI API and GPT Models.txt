@@ -1,0 +1,27 @@
+Here's the voiceover script for the introduction to OpenAI API and GPT models:
+
+Let's explore how we can use OpenAI's AI-powered tools to analyze and extract skills from resumes.
+
+First, let's introduce ourselves to the OpenAI API. We'll start by installing the openai library:
+`
+pip install openai
+`
+This will give us access to OpenAI's API for generating text using their GPT models.
+
+Now let's create an instance of the OpenAI API:
+`
+import openai
+
+api_key = "YOUR_OPENAI_API_KEY"
+openai.api_key = api_key
+
+model = "text-davinci-003"  # Use this model for GPT-style text generation
+completion = openai.Completion.create(prompt="Hello, I'm John Doe. Nice to meet you!", model=model)
+
+print(completion.choices[0].text)
+`
+This code creates an instance of the OpenAI API using our API key, and then uses the text-davinci-003 model to generate text for a given prompt.
+
+Important to note that this is just the beginning - we'll be exploring more advanced techniques in later lessons, such as using transformers and fine-tuning models for specific tasks.
+
+That's it! Now you have a basic understanding of how to use OpenAI's API and GPT models to analyze and extract skills from resumes.

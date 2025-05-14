@@ -1,0 +1,33 @@
+Here's the voiceover script for creating React app & folder structure:
+
+Let's create our React app using Create React App. This will give us a solid foundation for building our frontend.
+
+Open your terminal and type:
+
+npx create-react-app resume-analyzer --template react
+
+This creates our React app with all the necessary files and folders. Now let's take a look at the folder structure. We have a resume-analyzer directory, which contains our React app files.
+
+Here's how your file structure should look like:
+
+* resume-analyzer/
+  * node_modules/
+    * ...
+  * public/
+    * favicon.ico
+    * index.html
+    * logo192.png
+    * manifest.json
+    * robots.txt
+  * src/
+    * App.js
+    * App.test.js
+    * index.js
+    * serviceWorker.js
+    * setupTests.js
+
+Important to note that the public folder contains our static assets, such as images and HTML files. The src folder contains our React app code.
+
+Why we do this: By using Create React App, we can focus on writing code without worrying about setting up a project from scratch. This will save us time and reduce the complexity of our development environment.
+
+That's it for now! In the next lesson, we'll start building our React frontend by creating a file uploader component. See you then!

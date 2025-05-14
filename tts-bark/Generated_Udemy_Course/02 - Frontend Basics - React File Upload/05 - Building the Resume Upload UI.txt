@@ -1,0 +1,36 @@
+Here's the voiceover script for building the resume upload UI:
+
+Let's start building our resume upload UI in React. We'll create a simple form with an input field for uploading resumes.
+
+Open your App.js file and type:
+`
+import React, { useState } from 'react';
+
+function App() {
+  const [resumeFile, setResumeFile] = useState(null);
+
+  return (
+    <div>
+      <h1>Resume Analyzer</h1>
+      <form>
+        <input
+          type="file"
+          accept=".pdf, .docx, .txt"
+          onChange={(event) => setResumeFile(event.target.files[0])}
+        />
+        {resumeFile && <p>Selected file: {resumeFile.name}</p>}
+      </form>
+    </div>
+  );
+}
+
+export default App;
+`
+Here's what we're doing:
+
+* We import React and the useState hook to manage our form state.
+* We create a ResumeFile state variable to store the selected resume file.
+* We render a simple form with an input field for uploading resumes. The accept attribute specifies the allowed file types (PDF, DOCX, TXT).
+* We use the onChange event handler to update our resumeFile state variable when a file is selected.
+
+That's it! Now we have a basic resume upload UI in place. In the next lesson, we'll learn how to handle file uploads and process the uploaded resumes.

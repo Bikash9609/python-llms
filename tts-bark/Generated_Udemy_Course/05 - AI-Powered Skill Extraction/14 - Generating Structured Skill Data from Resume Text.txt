@@ -1,0 +1,43 @@
+Here's the voiceover script for generating structured skill data from resume text:
+
+Let's take our unstructured resume text and turn it into a structured skill dataset that we can use for machine learning.
+
+First, let's import the necessary libraries:
+`
+import pandas as pd
+from nltk.tokenize import word_tokenize
+from sklearn.feature_extraction.text import TfidfVectorizer
+`
+This code imports Pandas for data manipulation, NLTK for tokenization, and scikit-learn's TF-IDF vectorizer for converting text into numerical features.
+
+Now let's load our resume text into a Pandas DataFrame:
+`
+resume_data = pd.read_csv("resumes.csv")
+print(resume_data.head())
+`
+This code loads the resume text from a CSV file into a Pandas DataFrame, and then prints out the first few rows to verify that everything is working as expected.
+
+Next, let's tokenize our resume text using NLTK:
+`
+tokenized_text = []
+for row in resume_data.itertuples():
+    text = " ".join(word_tokenize(row.text))
+    tokenized_text.append(text)
+`
+This code iterates through each row of the DataFrame, tokenizes the text using NLTK, and then appends the tokenized text to a list.
+
+Now let's convert our tokenized text into numerical features using scikit-learn's TF-IDF vectorizer:
+`
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(tokenized_text)
+print(tfidf_matrix.shape)
+`
+This code creates a TF-IDF vectorizer, fits it to the tokenized text, and then converts the text into a numerical matrix.
+
+Finally, let's save our structured skill dataset as a CSV file:
+`
+pd.DataFrame(tfidf_matrix.toarray()).to_csv("skills.csv", index=False, header=None)
+`
+This code saves the TF-IDF matrix as a CSV file, with each row representing a resume and each column representing a word in the vocabulary.
+
+That's it! Now you have a structured skill dataset that you can use for machine learning.

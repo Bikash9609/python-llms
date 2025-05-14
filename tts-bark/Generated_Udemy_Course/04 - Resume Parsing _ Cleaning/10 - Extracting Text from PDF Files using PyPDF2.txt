@@ -1,0 +1,40 @@
+Here's the voiceover script for extracting text from PDF files using PyPDF2:
+
+Let's extract the text from PDF files using PyPDF2.
+
+First, let's install PyPDF2:
+`
+pip install PyPDF2
+`
+Now that we have PyPDF2 installed, let's open a new Python file and import it:
+`
+import PyPDF2
+
+# Open a PDF file in read-binary mode
+pdf_file = open("resume.pdf", "rb")
+
+# Create a PDF file reader object
+pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+
+# Get the number of pages in the PDF file
+num_pages = pdf_reader.numPages
+
+for page_num in range(num_pages):
+    # Read the text from each page
+    page_obj = pdf_reader.getPage(page_num)
+    page_text = page_obj.extractText()
+
+    # Print the extracted text
+    print(page_text)
+
+# Close the PDF file
+pdf_file.close()
+`
+Here's what we're doing:
+
+* We import PyPDF2 and open a PDF file in read-binary mode.
+* We create a PDF file reader object and get the number of pages in the PDF file.
+* We loop through each page, reading the text using extractText().
+* Finally, we print the extracted text.
+
+That's it! Now you can extract text from PDF files using PyPDF2.

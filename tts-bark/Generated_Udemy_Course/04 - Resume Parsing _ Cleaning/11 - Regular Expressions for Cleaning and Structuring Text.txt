@@ -1,0 +1,43 @@
+Here's the voiceover script for regular expressions for cleaning and structuring text:
+
+Let's use regular expressions to clean and structure our text.
+
+First, let's import the re module:
+`
+import re
+`
+Now we'll define a pattern to match phone numbers:
+`
+phone_pattern = re.compile(r'\(?(\d{3})\)?[-.\s]??(\d{3})[-.\s]??(\d{4})')
+`
+This pattern matches a phone number in the format (123) 456-7890 or 123-456-7890.
+
+Next, let's define a pattern to match email addresses:
+`
+email_pattern = re.compile(r'\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b')
+`
+This pattern matches an email address in the format john.doe@example.com.
+
+Now let's use these patterns to clean our text:
+`
+text = "Call me at (123) 456-7890 or email me at john.doe@example.com"
+phone_match = phone_pattern.search(text)
+email_match = email_pattern.search(text)
+
+if phone_match:
+    print("Phone number:", phone_match.group(1))
+else:
+    print("No phone number found")
+
+if email_match:
+    print("Email address:", email_match.group())
+else:
+    print("No email address found")
+`
+Here's what we're doing:
+
+* We define two regular expression patterns to match phone numbers and email addresses.
+* We use the search() method to find matches for these patterns in our text.
+* We then print out the matched values if they exist, or a message indicating that no match was found.
+
+That's it! Now you can use regular expressions to clean and structure your text.

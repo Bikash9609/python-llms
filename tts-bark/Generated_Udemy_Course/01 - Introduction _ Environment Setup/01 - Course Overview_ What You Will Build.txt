@@ -1,0 +1,41 @@
+Here's the voiceover script for the coding tutorial video:
+
+Let's start by setting the stage for our project. We're going to build a smart resume analyzer and job matcher using React, Python, and OpenAI. This is an all-open-source course designed specifically for complete beginners.
+
+Now we'll get started with the environment setup. First, you need to install Node.js if you haven't already. Once installed, open VS Code and create a new folder called 'resume-analyzer'. Then, open the integrated terminal and type:
+
+npm init vite@latest frontend -- --template react
+
+This creates our React frontend using Vite. The --template react flag specifies we want a React project, which will give us a solid foundation for building our UI.
+
+Now let's install some dependencies. We'll need Tailwind CSS to style our components. Run the following command:
+
+npm install tailwindcss
+
+Important to note that we're not setting up any complex build tools or configurations. Vite takes care of everything for us, allowing us to focus on writing code.
+
+Next, create a new file called app.js and add the following code:
+
+import { createSignal } from 'react';
+import './styles.css';
+
+function App() {
+  const [name, setName] = createSignal('');
+  return (
+    <div className="container">
+      <h1>Welcome to Resume Analyzer!</h1>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Enter your name"
+      />
+    </div>
+  );
+}
+
+export default App;
+
+Why we do this: We're creating a basic React app with a single input field. This will serve as the foundation for our resume uploader and manager.
+
+That's it for now. In the next lesson, we'll dive deeper into building our UI using Tailwind CSS. See you then!

@@ -1,0 +1,42 @@
+# Course Roadmap
+
+## Module 1: Introduction & Environment Setup
+- Lesson 1.1: Course Overview: What You Will Build
+- Lesson 1.2: Setting Up Python, Node.js and VS Code (Windows/Linux/macOS)
+- Lesson 1.3: Installing Git, Creating GitHub Repo, and Project Structure Overview
+
+## Module 2: Frontend Basics - React File Upload
+- Lesson 2.1: Creating React App & Folder Structure
+- Lesson 2.2: Building the Resume Upload UI
+- Lesson 2.3: Connecting Frontend to Backend via REST API
+
+## Module 3: Backend Basics - FastAPI for Resume Upload
+- Lesson 3.1: FastAPI Project Setup and Basic Routing
+- Lesson 3.2: Receiving and Saving Uploaded Resume Files
+- Lesson 3.3: Handling File Types and Errors Gracefully
+
+## Module 4: Resume Parsing & Cleaning
+- Lesson 4.1: Extracting Text from PDF Files using PyPDF2
+- Lesson 4.2: Regular Expressions for Cleaning and Structuring Text
+- Lesson 4.3: Using Pandas to Organize Resume Data
+
+## Module 5: AI-Powered Skill Extraction
+- Lesson 5.1: Introduction to OpenAI API and GPT Models
+- Lesson 5.2: Generating Structured Skill Data from Resume Text
+- Lesson 5.3: Filtering and Ranking Relevant Skills
+
+## Module 6: Job Listing Scraping & Matching
+- Lesson 6.1: Scraping Jobs from Indeed with Playwright
+- Lesson 6.2: Parsing Job Descriptions and Extracting Requirements
+- Lesson 6.3: Matching Jobs to Resume Skills with FuzzyWuzzy
+
+## Module 7: Building the Dashboard
+- Lesson 7.1: Designing the UI to Display Matched Jobs
+- Lesson 7.2: Fetching Matched Jobs from API and Displaying in React
+- Lesson 7.3: Pagination, Sorting and Improving User Experience
+
+## Module 8: Project Deployment & Wrap-Up
+- Lesson 8.1: Using Docker for Cross-Platform Deployment
+- Lesson 8.2: Deploying the App to Render / Vercel / Railway
+- Lesson 8.3: Final Walkthrough, Improvements, and Learning Resources
+

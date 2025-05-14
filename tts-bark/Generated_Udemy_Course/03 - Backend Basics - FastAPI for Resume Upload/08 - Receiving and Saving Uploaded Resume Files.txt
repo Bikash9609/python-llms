@@ -1,0 +1,39 @@
+Here's the voiceover script for receiving and saving uploaded resume files:
+
+Let's add the ability to receive and save uploaded resume files in our FastAPI application.
+
+First, let's create a new route that will handle file uploads:
+`
+from fastapi import FastAPI, File, UploadFile
+import os
+
+app = FastAPI()
+
+@app.post("/upload_resume/")
+async def upload_resume(file: UploadFile = File(...)):
+    # Check the file type and size
+    if not file.filename.endswith(".pdf"):
+        return {"error": "Only PDF files are allowed"}
+    if file.size > 1024 * 1024:
+        return {"error": "File size exceeds 1MB limit"}
+
+    # Save the file to a directory
+    resume_dir = "resumes"
+    os.makedirs(resume_dir, exist_ok=True)
+    file_path = os.path.join(resume_dir, file.filename)
+    with open(file_path, "wb") as f:
+        contents = await file.read()
+        f.write(contents)
+
+    # Return a success message
+    return {"message": "Resume uploaded successfully"}
+`
+Here's what we're doing:
+
+* We import the UploadFile and File types from FastAPI.
+* We define a new route /upload_resume/ that handles POST requests with a file upload.
+* We check the file type and size to ensure it meets our requirements.
+* We save the file to a directory called "resumes" using the os module.
+* Finally, we return a success message indicating that the resume was uploaded successfully.
+
+That's it! Now we have a basic route that allows users to upload PDF files and saves them to a directory. In the next lesson, we'll learn how to extract relevant information from these uploaded resumes using Python and NLP techniques.
