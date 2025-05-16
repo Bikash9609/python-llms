@@ -1,47 +1,54 @@
-from db.init import db, run_query
-from db import queries
-import requests
-import json
+from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from ai import format_metadata, meta, rels, query_ollama_stream
+from typing import Optional
 
 
-OLLAMA_MODEL = "llama3"
-BASE_URL = "http://localhost:11434/api/generate"
-COURSE_DIR = "Generated_Udemy_Course"
+app = FastAPI()
+
+# Allow requests from your frontend origin, e.g. localhost:5173 or 8080
+origins = [
+    "http://localhost:5173",  # adjust this to your Vue dev server origin
+    "http://localhost:8000",  # backend itself (optional)
+    "*",  # or allow all origins (not recommended for prod)
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # allow all methods including OPTIONS
+    allow_headers=["*"],
+)
 
 
-def query_ollama(prompt, model=OLLAMA_MODEL, context=None):
-    data = {
-        "model": model,
-        "prompt": prompt,
-        "stream": True,
-        "context": context,
-    }
-    resp = requests.post(
-        BASE_URL,
-        json=data,
-        stream=True,
-    )
-    output = ""
-    new_context = context  # Initialize with incoming context
-    for line in resp.iter_lines():
-        if line:
-            try:
-                chunk = json.loads(line.decode("utf-8"))
-                output += chunk.get("response", "")
-                new_context = chunk.get("context", new_context)
-            except json.JSONDecodeError:
-                continue
-    return output, new_context
+class QuestionRequest(BaseModel):
+    question: str
+    context: Optional[str] = None
 
 
-def get_tables_meta():
-    return run_query(queries.get_table_meta_query(), fetch=True)
+@app.post("/ask")
+async def ask(request: QuestionRequest):
+    question = request.question
+    prev_context = request.context
 
+    formatted_schema = format_metadata(meta, rels)
+    prompt = f"""
+Given the following PostgreSQL schema:
 
-def main():
-    print(get_tables_meta())
-    return
+{formatted_schema}
 
+{question}
+Be specific and list reasons.
+"""
 
-if __name__ == "__main__":
-    main()
+    # Event generator that updates context on the fly
+    def event_generator():
+        context = prev_context
+        for chunk in query_ollama_stream(prompt, context=context):
+            # chunk is just the text part, but context is updated internally in query_ollama_stream
+            yield chunk
+
+    return StreamingResponse(event_generator(), media_type="text/plain")

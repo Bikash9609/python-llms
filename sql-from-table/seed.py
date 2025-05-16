@@ -15,6 +15,8 @@ from sqlalchemy.orm import relationship, sessionmaker
 from faker import Faker
 import random
 from datetime import datetime
+from config import config
+
 
 Base = declarative_base()
 fake = Faker()
@@ -111,7 +113,9 @@ class AuditLog(Base):
 
 
 # Connect to Postgres
-engine = create_engine("postgresql://postgres:postgres@localhost/vehicle-forum-local")
+engine = create_engine(
+    f"postgresql://postgres:postgres@localhost/{config.get('database_name')}"
+)
 Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)

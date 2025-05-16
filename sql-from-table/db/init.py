@@ -1,19 +1,11 @@
 import psycopg2
-
-
-db = psycopg2.connect(
-    host="localhost",
-    database="vehicle-forum-local",
-    port="5432",
-    user="postgres",
-    password="postgres",
-)
+from config import config
 
 
 def get_db_connection():
     return psycopg2.connect(
         host="localhost",
-        database="vehicle-forum-local",
+        database=config.get("database_name"),
         port="5432",
         user="postgres",
         password="postgres",
